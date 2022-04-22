@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,11 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("appointment")
 public class AppointmentController {
 	
+	@Autowired
+	AppointmentService service;
+	
 	@PostMapping
 	void saveAppointment(@RequestBody Appointment appointment) {
 		System.out.println(appointment.getAmount());
 		System.out.println(appointment.getPreference());
 		System.out.println(appointment.isPhysiotherapist());
 		System.out.println(appointment.customer);
+		service.saveAppointment(appointment);
 	}
 }
